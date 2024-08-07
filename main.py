@@ -7,7 +7,7 @@ import os
 
 # os.environ[''] = 'True'
 
-model = WhisperModel("small.en", device="cpu", compute_type="int8")
+model = WhisperModel("base.en", device="cpu", compute_type="int8")
 
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
