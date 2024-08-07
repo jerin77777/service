@@ -1,1 +1,2 @@
 flask
+faster_whisper
