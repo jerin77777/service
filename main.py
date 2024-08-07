@@ -5,9 +5,9 @@ from faster_whisper import WhisperModel
 import base64
 import os
 
-# os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
+# os.environ[''] = 'True'
 
-# model = WhisperModel("small.en", device="cpu", compute_type="int8")
+model = WhisperModel("small.en", device="cpu", compute_type="int8")
 
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
