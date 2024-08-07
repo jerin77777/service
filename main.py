@@ -29,12 +29,12 @@ def transcribe():
     wav_file.write(decode_string)
     print("saved")
 
-    # segments, info = model.transcribe("test.m4a", beam_size=5, language="en", vad_filter=True)
+    segments, info = model.transcribe("test.m4a", beam_size=5, language="en", vad_filter=True)
     print("crossed")
     full_text = ""
 
-    # for segment in segments:
-        # full_text += segment.text + " "
+    for segment in segments:
+        full_text += segment.text + " "
         
     print(full_text)
 
