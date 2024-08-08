@@ -97,11 +97,11 @@ def get_pallet():
 
     colors_list = get_color_pallete("./img.jpg", 10)
 
-    print(colors_list)
+    colors_list
 
 
 
-    return full_text
+    return str(colors_list)
 
 # main driver function
 if __name__ == '__main__':
