@@ -1,2 +1,4 @@
 flask
-faster_whisper
+opencv-python
+pandas
+matplotlib
