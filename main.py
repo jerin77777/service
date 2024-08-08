@@ -71,7 +71,7 @@ def hello_world():
 @app.route("/get_pallet", methods=["POST"])
 def get_pallet():
 
-    url = f"https://api.freepik.com/v1/resources?term={request.json["subject"]}&page=1&limit=1&filters[content_type][photo]=1"
+    url = f"https://api.freepik.com/v1/resources?term={request.json['subject']}&page=1&limit=1&filters[content_type][photo]=1"
 
     headers = {
         "Accept-Language": "<accept-language>",
