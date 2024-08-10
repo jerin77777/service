@@ -115,8 +115,25 @@ def get_predictions():
     )
 
     result = CLIENT.infer("./design.jpg", model_id="detector_meme/2")
+    predictions = result["predictions"]
+    sx = predictions[0]["x"]
+    sy = predictions[0]["y"]
+    dx = 0.0
+    dy = 0.0
+    for prediction in predictions:
+      if sx > prediction["x"] :
+        sx = prediction["x"];
+        dx = prediction["width"] / prediction["x"];
+      if sy > prediction["y"] :
+        sy = prediction["y"];
+        dy = prediction["height"] / prediction["y"];
 
-    return json.dumps(result)
+    for prediction in predictions:
+      prediction["x"] = prediction["x"] - (prediction["width"] / dx);
+      prediction["y"] = prediction["y"] - (prediction["height"] / dx);
+    
+
+    return json.dumps(predictions)
 
 if __name__ == '__main__':
 
