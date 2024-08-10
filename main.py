@@ -8,7 +8,9 @@ import math
 import requests
 import cv2
 import matplotlib.pyplot as plt
-
+from inference_sdk import InferenceHTTPClient
+import base64
+import json
 
 def rgb2hex(r, g, b):
     return "#{:02x}{:02x}{:02x}".format(r, g, b)
@@ -93,17 +95,29 @@ def get_pallet():
 
     resized_image = cv2.resize(image, (200, int(200 / aspect_ratio)))
 
-    img = cv2.imwrite("img.jpg", resized_image)
+    cv2.imwrite("img.jpg", resized_image)
 
     colors_list = get_color_pallete("./img.jpg", 10)
 
     colors_list
 
-
-
     return str(colors_list)
 
-# main driver function
+@app.route("/get_predictions", methods=["POST"])
+def get_predictions():
+
+    with open("./design.jpg", "wb") as fh:
+        fh.write(base64.decodebytes(request.json["image"]))
+
+    CLIENT = InferenceHTTPClient(
+    api_url="https://detect.roboflow.com",
+    api_key="vkbPyTkNkozqQgf6i4i0"
+    )
+
+    result = CLIENT.infer("./design.png", model_id="detector_meme/2")
+
+    return json.dumps(result)
+
 if __name__ == '__main__':
 
     # run() method of Flask class runs the application 
