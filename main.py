@@ -107,14 +107,14 @@ def get_pallet():
 def get_predictions():
 
     with open("./design.jpg", "wb") as fh:
-        fh.write(base64.decodebytes(request.json["image"]))
+        fh.write(base64.b64decode(request.json["image"]))
 
     CLIENT = InferenceHTTPClient(
     api_url="https://detect.roboflow.com",
     api_key="vkbPyTkNkozqQgf6i4i0"
     )
 
-    result = CLIENT.infer("./design.png", model_id="detector_meme/2")
+    result = CLIENT.infer("./design.jpg", model_id="detector_meme/2")
 
     return json.dumps(result)
 
